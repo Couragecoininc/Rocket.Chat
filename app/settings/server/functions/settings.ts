@@ -325,18 +325,6 @@ class Settings extends SettingsBase {
 			return false;
 		}
 
-		const record = {
-			_id,
-			value: options.value,
-			type: options.type || 'string',
-			env: options.env || false,
-			i18nLabel: options.i18nLabel || _id,
-			public: options.public || false,
-			packageValue: options.packageValue,
-			blocked: options.blocked || false,
-		};
-
-		this.storeSettingValue(record, this.initialLoad);
 		return SettingsModel.updateOptionsById(_id, options);
 	}
 
