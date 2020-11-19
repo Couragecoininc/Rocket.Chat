@@ -218,7 +218,7 @@ class Settings extends SettingsBase {
 			blocked: options.blocked,
 		};
 
-		this.storeSettingValue(record, true);
+		this.storeSettingValue(record, this.initialLoad);
 
 		SettingsModel.upsert({
 			_id,
@@ -336,7 +336,7 @@ class Settings extends SettingsBase {
 			blocked: options.blocked || false,
 		};
 
-		this.storeSettingValue(record, false);
+		this.storeSettingValue(record, this.initialLoad);
 		return SettingsModel.updateOptionsById(_id, options);
 	}
 
