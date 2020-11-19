@@ -207,6 +207,19 @@ class Settings extends SettingsBase {
 
 		updateOperations.$set.ts = new Date();
 
+		const record = {
+			_id,
+			value,
+			type: options.type || 'string',
+			env: options.env || false,
+			i18nLabel: options.i18nLabel,
+			public: options.public || false,
+			packageValue: options.packageValue,
+			blocked: options.blocked,
+		};
+
+		this.storeSettingValue(record, true);
+
 		SettingsModel.upsert({
 			_id,
 		}, updateOperations);
