@@ -320,10 +320,23 @@ class Settings extends SettingsBase {
 	/*
 	* Update options of a setting by id
 	*/
-	updateOptionsById(_id: string, options: object): boolean {
+	updateOptionsById(_id: string, options: ISettingAddOptions): boolean {
 		if (!_id || options == null) {
 			return false;
 		}
+
+		const record = {
+			_id,
+			value: options.value,
+			type: options.type || 'string',
+			env: options.env || false,
+			i18nLabel: options.i18nLabel || _id,
+			public: options.public || false,
+			packageValue: options.packageValue,
+			blocked: options.blocked || false,
+		};
+
+		this.storeSettingValue(record, false);
 		return SettingsModel.updateOptionsById(_id, options);
 	}
 
